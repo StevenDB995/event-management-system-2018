@@ -18,10 +18,10 @@ module.exports = {
     fullInfo: { type: "string" },
     imageSrc: { type: "string" },
     organizer: { type: "string" },
-    start: { type: "string", columnType: "date" },
-    end: { type: "string", columnType: "date" },
+    date: { type: "string", columnType: "date" },
+    time: { type: "string" },
     venue: { type: "string" },
-    quota: { type: "nuumber" },
+    quota: { type: "number" },
     highlighted: { type: "boolean" }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
