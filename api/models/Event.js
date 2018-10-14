@@ -22,7 +22,7 @@ module.exports = {
     time: { type: "string" },
     venue: { type: "string" },
     quota: { type: "number" },
-    highlighted: { type: "boolean" }
+    box: { type: "string" }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

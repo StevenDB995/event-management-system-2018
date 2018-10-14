@@ -1,86 +1,93 @@
 <!--create.ejs-->
 <form action="/event/create" method="POST">
 
-    <!-- Event Name -->
-    <div class="form-group">
-        <label>Event Name:</label>
-        <input type="text" class="form-control" name="Event[name]" required>
-    </div>
+    <div class="row">
+        <div class="card col-12 col-lg-6 col-xl-6" style="border-style: hidden;">
+            <!-- Event Name -->
+            <div class="form-group">
+                <label>Event Name:</label>
+                <input type="text" class="form-control" name="Event[name]" required>
+            </div>
 
-    <!-- Short Description -->
-    <div class="form-group">
-        <label>Short Description:</label><br>
-        <textarea name="Event[shortInfo]" required></textarea>
-    </div>
+            <!-- Short Description -->
+            <div class="form-group">
+                <label>Short Description:</label><br>
+                <textarea name="Event[shortInfo]" cols=60 rows=4 style="resize: both; max-width: 100%;" required></textarea>
+            </div>
 
-    <!-- Full Description -->
-    <div class="form-group">
-        <label>Full Description:</label><br>
-        <textarea name="Event[fullInfo]"></textarea>
-    </div>
+            <!-- Full Description -->
+            <div class="form-group">
+                <label>Full Description:</label><br>
+                <textarea name="Event[fullInfo]" cols=60 rows=8 style="resize: both; max-width: 100%;"></textarea>
+            </div>
+        </div>
 
-    <!-- Image URL -->
-    <div class="form-group">
-        <label>Image URL:</label>
-        <input type="url" class="form-control" name="Event[imageSrc]">
-    </div>
+        <div class="card col-12 col-lg-6 col-xl-6" style="border-style: hidden;">
+            <!-- Image URL -->
+            <div class="form-group">
+                <label>Image URL:</label>
+                <input type="url" class="form-control" name="Event[imageSrc]">
+            </div>
 
-    <!-- Organizer -->
-    <div class="form-group">
-        <label>Organizer:</label><br>
-        <select name="Event[organizer]" style="width: 200px;">
-            <option value="none" selected>-- Please pick one --</option>
-            <option value="SU">Student Union</option>
-            <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
-            <option value="SA">Student Affairs</option>
-            <option value="SSA">Social Service Association</option>
-            <option value="UASE">The United Association of Sports and Entertainment</option>
-            <option value="LC">Language Centre</option>
-            <option value="AVA">Academy of Visual Arts</option>
-            <option value="CSD">Department of Computer Science</option>
-        </select>
-    </div>
+            <!-- Organizer -->
+            <div class="form-group">
+                <label>Organizer:</label><br>
+                <select name="Event[organizer]" style="width: 200px;" required>
+                    <option value="" selected>-- Please pick one --</option>
+                    <option value="SU">Student Union</option>
+                    <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
+                    <option value="SA">Student Affairs</option>
+                    <option value="SSA">Social Service Association</option>
+                    <option value="UASE">The United Association of Sports and Entertainment</option>
+                    <option value="LC">Language Centre</option>
+                    <option value="AVA">Academy of Visual Arts</option>
+                    <option value="CSD">Department of Computer Science</option>
+                </select>
+            </div>
 
-    <!-- Event Date -->
-    <div class="form-group">
-        <label>Event Date:</label>
-        <input type="date" class="form-control" name="Event[date]">
-    </div>
+            <!-- Event Date -->
+            <div class="form-group">
+                <label>Event Date:</label>
+                <input type="date" class="form-control" name="Event[date]" required>
+            </div>
 
-    <!-- Time -->
-    <div class="form-group">
-        <label>Time:</label>
-        <input type="time" class="form-control" name="Event[time]">
-    </div>
+            <!-- Time -->
+            <div class="form-group">
+                <label>Time:</label>
+                <input type="time" class="form-control" name="Event[time]" required>
+            </div>
 
-    <!-- Venue -->
-    <div class="form-group">
-        <label>Venue:</label><br>
-        <select name="Event[venue]" style="width: 200px;">
-            <option value="none" selected>-- Please pick one --</option>
-            <option value="lt1">LT1</option>
-            <option value="lt2">LT2</option>
-            <option value="lt3">LT3</option>
-            <option value="ACHall">AC Hall</option>
-            <option value="aab201">AAB201</option>
-            <option value="wlb103">WLB103</option>
-            <option value="wlb211">WLB211</option>
-            <option value="fsc501">FSC501</option>
-            <option value="rra401">RRS401</option>
-            <option value="cva112">CVA112</option>
-        </select>
-    </div>
+            <!-- Venue -->
+            <div class="form-group">
+                <label>Venue:</label><br>
+                <select name="Event[venue]" style="width: 200px;" required>
+                    <option value="" selected>-- Please pick one --</option>
+                    <option value="lt1">LT1</option>
+                    <option value="lt2">LT2</option>
+                    <option value="lt3">LT3</option>
+                    <option value="ACHall">AC Hall</option>
+                    <option value="aab201">AAB201</option>
+                    <option value="wlb103">WLB103</option>
+                    <option value="wlb211">WLB211</option>
+                    <option value="fsc501">FSC501</option>
+                    <option value="rra401">RRS401</option>
+                    <option value="cva112">CVA112</option>
+                </select>
+            </div>
 
-    <!-- Quota -->
-    <div class="form-group">
-        <label>Quota:</label>
-        <input type="text" class="form-control" name="Event[quota]">
-    </div>
+            <!-- Quota -->
+            <div class="form-group">
+                <label>Quota:</label>
+                <input type="text" class="form-control" name="Event[quota]">
+            </div>
 
-    <!-- Highlighted Event -->
-    <div class="form-group">
-        <input name="box" type="checkbox" value="Highlighted Event"> Highlighted Event
-    </div>
+            <!-- Highlighted Event -->
+            <div class="form-group">
+                <input type="checkbox" value="highlighted" name="Event[box]"> Highlighted Event
+            </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" style="width: 80px;">Submit</button>
+            <br>
+        </div>
+    </div>
 </form>
