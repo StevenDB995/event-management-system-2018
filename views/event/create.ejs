@@ -1,4 +1,7 @@
 <!--create.ejs-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+
 <form action="/event/create" method="POST">
 
     <div class="row">
@@ -48,13 +51,19 @@
             <!-- Event Date -->
             <div class="form-group">
                 <label>Event Date:</label>
-                <input type="date" class="form-control" name="Event[date]" required>
+                <input id="sandbox-container" type="text" class="form-control" name="Event[date]" required>
             </div>
 
-            <!-- Time -->
+            <!-- Start Time -->
             <div class="form-group">
-                <label>Time:</label>
-                <input type="time" class="form-control" name="Event[time]" required>
+                <label>Start Time:</label>
+                <input id="time-picker1" type="text" class="form-control" name="Event[startTime]" required>
+            </div>
+
+            <!-- End Time -->
+            <div class="form-group">
+                <label>End Time:</label>
+                <input id="time-picker2" type="text" class="form-control" name="Event[endTime]" required>
             </div>
 
             <!-- Venue -->
@@ -91,3 +100,25 @@
         </div>
     </div>
 </form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $('#sandbox-container').datepicker({
+        format: "yyyy/mm/dd",
+        daysOfWeekHighlighted: "0",
+        todayHighlight: true
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+<script>
+    $('#time-picker1').timepicker({
+        template: false,
+        minuteStep: 10
+    });
+
+    $('#time-picker2').timepicker({
+        template: false,
+        minuteStep: 10
+    });
+</script>

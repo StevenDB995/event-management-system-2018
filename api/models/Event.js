@@ -19,7 +19,8 @@ module.exports = {
     imageSrc: { type: "string" },
     organizer: { type: "string" },
     date: { type: "string", columnType: "date" },
-    time: { type: "string" },
+    startTime: { type: "string" },
+    endTime: { type: "string" },
     venue: { type: "string" },
     quota: { type: "number" },
     box: { type: "string" }
