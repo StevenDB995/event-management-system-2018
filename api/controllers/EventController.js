@@ -18,6 +18,12 @@ module.exports = {
         await Event.create(req.body.Event);
 
         return res.ok("Successfully created!");
+    },
+
+    admin: async function (req, res) {
+
+        var events = await Event.find();
+        return res.view('event/admin', { 'events': events });
     }
 };
 
