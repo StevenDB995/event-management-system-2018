@@ -37,14 +37,14 @@
                 <label>Organizer:</label><br>
                 <select name="Event[organizer]" style="width: 200px;" required>
                     <option value="" selected>-- Please pick one --</option>
-                    <option value="SU">Student Union</option>
+                    <option value="Student Union">Student Union</option>
                     <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
-                    <option value="SA">Student Affairs</option>
-                    <option value="SSA">Social Service Association</option>
+                    <option value="Student Affairs">Student Affairs</option>
+                    <option value="Social Service Association">Social Service Association</option>
                     <option value="UASE">The United Association of Sports and Entertainment</option>
-                    <option value="LC">Language Centre</option>
-                    <option value="AVA">Academy of Visual Arts</option>
-                    <option value="CSD">Department of Computer Science</option>
+                    <option value="Language Centre">Language Centre</option>
+                    <option value="Academy of Visual Arts">Academy of Visual Arts</option>
+                    <option value="Department of Computer Science">Department of Computer Science</option>
                 </select>
             </div>
 
@@ -57,13 +57,13 @@
             <!-- Start Time -->
             <div class="form-group">
                 <label>Start Time:</label>
-                <input id="time-picker1" type="text" class="form-control" name="Event[startTime]" required>
+                <input id="time-picker1" type="text" class="form-control" name="Event[startTime]">
             </div>
 
             <!-- End Time -->
             <div class="form-group">
                 <label>End Time:</label>
-                <input id="time-picker2" type="text" class="form-control" name="Event[endTime]" required>
+                <input id="time-picker2" type="text" class="form-control" name="Event[endTime]">
             </div>
 
             <!-- Venue -->
@@ -71,16 +71,16 @@
                 <label>Venue:</label><br>
                 <select name="Event[venue]" style="width: 200px;" required>
                     <option value="" selected>-- Please pick one --</option>
-                    <option value="lt1">LT1</option>
-                    <option value="lt2">LT2</option>
-                    <option value="lt3">LT3</option>
-                    <option value="ACHall">AC Hall</option>
-                    <option value="aab201">AAB201</option>
-                    <option value="wlb103">WLB103</option>
-                    <option value="wlb211">WLB211</option>
-                    <option value="fsc501">FSC501</option>
-                    <option value="rra401">RRS401</option>
-                    <option value="cva112">CVA112</option>
+                    <option value="LT1">LT1</option>
+                    <option value="LT2">LT2</option>
+                    <option value="LT3">LT3</option>
+                    <option value="AC Hall">AC Hall</option>
+                    <option value="AAB201">AAB201</option>
+                    <option value="WLB103">WLB103</option>
+                    <option value="WLB211">WLB211</option>
+                    <option value="FSC501">FSC501</option>
+                    <option value="RRS401">RRS401</option>
+                    <option value="CVA112">CVA112</option>
                 </select>
             </div>
 
@@ -114,11 +114,13 @@
 <script>
     $('#time-picker1').timepicker({
         template: false,
+        showMeridian: false,
         minuteStep: 10
     });
 
     $('#time-picker2').timepicker({
         template: false,
+        showMeridian: false,
         minuteStep: 10
     });
 </script>
