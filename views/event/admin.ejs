@@ -1,0 +1,13 @@
+<!--admin.ejs-->
+<table class="table">
+    <% events.forEach(function(model) { %>
+    <tr>
+        <td>
+            <%= model.id %>
+        </td>
+        <td>
+            <%= model.name %>
+        </td>
+    </tr>
+    <% }); %>
+</table>
