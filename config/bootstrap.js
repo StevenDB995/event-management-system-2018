@@ -34,7 +34,7 @@ module.exports.bootstrap = async function (done) {
       box: 'highlighted',
       id: 1
     },
-    
+
     {
       name: 'Singing Contest',
       shortInfo: '一年一度既HKBU Singing Contest又到喇！身為浸大人既你點可能錯過！？無論你係咩系、Bechelor/AD Programme，我地都歡迎你報名！身邊有唱得之人就更係要推薦佢黎喇！',
@@ -44,9 +44,60 @@ module.exports.bootstrap = async function (done) {
       date: '2018/11/03',
       startTime: '19:00', endTime: '21:30',
       venue: 'AC Hall',
-      quota: 500,
+      quota: '500',
       box: 'highlighted',
       id: 2
+    },
+
+    {
+      name: 'ABCDEFGHIJKLMN',
+      shortInfo: 'Learn English and have some fun!',
+      fullInfo: 'Learn English and have some fun! Check the poster for more information.',
+      imageSrc: 'http://via.placeholder.com/350x150/dec.png',
+      organizer: 'Language Centre',
+      date: '2018/11/15',
+      startTime: '18:30', endTime: '21:30',
+      venue: 'RRS401',
+      quota: '90',
+      box: 'highlighted',
+      id: 3
+    },
+
+    {
+      name: 'Real Craftmanship',
+      shortInfo: "Have an idea of real craftmanship? Join us and you'll learn some!",
+      fullInfo: "Have an idea of real craftmanship? Join us and you'll learn some!",
+      imageSrc: 'http://via.placeholder.com/350x150/dec.png',
+      date: '2018/11/17',
+      startTime: '13:30', endTime: '17:30',
+      venue: 'CVA112',
+      quota: '40',
+      box: 'highlighted',
+      id: 4
+    },
+
+    {
+      name: '3 Points Contest',
+      shortInfo: 'Come and be the best 3 points shooter here! Every basketball lovers are welcomed!',
+      fullinfo: 'Come and be the best 3 points shooter here! Every basketball lovers are welcomed! Scan the QR code for enrollment.',
+      date: '2018/11/21',
+      startTime: '14:30', endTime: '16:00',
+      venue: 'RRS401',
+      quota: '32',
+      box: '',
+      id: 5
+    },
+
+    {
+      name: 'asdfg1234',
+      shortInfo: 'qwerty uiop asdfghjk',
+      fullInfo:'kkkij lmnhhg @#$%^&*><?+=...',
+      date: '2018/11/23',
+      startTime: '15:00', endTIme: '18:00',
+      venue: 'AAB201',
+      quota: '180',
+      box: 'highlighted',
+      id: 6
     }
   ]);
   // ```
