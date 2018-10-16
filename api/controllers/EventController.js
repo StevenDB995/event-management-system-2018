@@ -67,5 +67,22 @@ module.exports = {
 
         }
     },
+
+    // action - delete
+    delete: async function (req, res) {
+
+        if (req.method == "GET") return res.forbidden();
+
+        var message = Event.getInvalidIdMsg(req.params);
+
+        if (message) return res.badRequest(message);
+
+        var models = await Event.destroy(req.params.id).fetch();
+
+        if (models.length == 0) return res.notFound();
+
+        return res.ok("Record Deleted.");
+
+    },
 };
 

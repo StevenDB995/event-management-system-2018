@@ -22,7 +22,7 @@ module.exports = {
     startTime: { type: "string" },
     endTime: { type: "string" },
     venue: { type: "string" },
-    quota: { type: "number" },
+    quota: { type: "string" },
     box: { type: "string" }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

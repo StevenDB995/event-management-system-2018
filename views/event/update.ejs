@@ -103,6 +103,11 @@
             </div>
         </div>
     </form>
+
+    <form action="http://localhost:1337/event/delete/<%= event.id %>" method="POST">
+        <button class="btn btn-danger" type="submit" style="width: 80px;">Delete</button>
+        <br><br>
+    </form>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
