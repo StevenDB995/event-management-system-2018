@@ -1,6 +1,8 @@
 <!--admin.ejs-->
 <style>
-    tr:nth-child(odd) {background-color: #f2f2f2;}
+    tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
 </style>
 
 <table class="table">
@@ -10,7 +12,9 @@
             <%= model.id %>
         </td>
         <td>
-            <%= model.name %>
+            <a href="http://localhost:1337/event/update/<%= model.id %>">
+                <%= model.name %>
+            </a>
         </td>
     </tr>
     <% }); %>
