@@ -1,0 +1,136 @@
+<!-- update.ejs -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
+
+<body onload="recoverSelectBox()">
+    <form action="/event/update/<%= event.id %>" method="POST">
+
+        <div class="row">
+            <div class="card col-12 col-lg-6 col-xl-6" style="border-style: hidden;">
+                <!-- Event Name -->
+                <div class="form-group">
+                    <label>Event Name:</label>
+                    <input type="text" class="form-control" name="Event[name]" value="<%= event.name %>" required>
+                </div>
+
+                <!-- Short Description -->
+                <div class="form-group">
+                    <label>Short Description:</label><br>
+                    <textarea name="Event[shortInfo]" cols=60 rows=4 style="resize: both; max-width: 100%;" required><%= event.shortInfo %></textarea>
+                </div>
+
+                <!-- Full Description -->
+                <div class="form-group">
+                    <label>Full Description:</label><br>
+                    <textarea name="Event[fullInfo]" cols=60 rows=8 style="resize: both; max-width: 100%;"><%= event.fullInfo %></textarea>
+                </div>
+            </div>
+
+            <div class="card col-12 col-lg-6 col-xl-6" style="border-style: hidden;">
+                <!-- Image URL -->
+                <div class="form-group">
+                    <label>Image URL:</label>
+                    <input type="url" class="form-control" name="Event[imageSrc]" value="<%= event.imageSrc %>">
+                </div>
+
+                <!-- Organizer -->
+                <div class="form-group">
+                    <label>Organizer:</label><br>
+                    <select id="select-box1" name="Event[organizer]" style="width: 200px;" required>
+                        <option value="">-- Please pick one --</option>
+                        <option value="Student Union">Student Union</option>
+                        <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
+                        <option value="Student Affairs">Student Affairs</option>
+                        <option value="Social Service Association">Social Service Association</option>
+                        <option value="UASE">The United Association of Sports and Entertainment</option>
+                        <option value="Language Centre">Language Centre</option>
+                        <option value="Academy of Visual Arts">Academy of Visual Arts</option>
+                        <option value="Department of Computer Science">Department of Computer Science</option>
+                    </select>
+                </div>
+
+                <!-- Event Date -->
+                <div class="form-group">
+                    <label>Event Date:</label>
+                    <input id="sandbox-container" type="text" class="form-control" name="Event[date]" value="<%= event.date %>"
+                        required>
+                </div>
+
+                <!-- Start Time -->
+                <div class="form-group">
+                    <label>Start Time:</label>
+                    <input id="time-picker1" type="text" class="form-control" name="Event[startTime]" value="<%= event.startTime %>">
+                </div>
+
+                <!-- End Time -->
+                <div class="form-group">
+                    <label>End Time:</label>
+                    <input id="time-picker2" type="text" class="form-control" name="Event[endTime]" value="<%= event.endTime %>">
+                </div>
+
+                <!-- Venue -->
+                <div class="form-group">
+                    <label>Venue:</label><br>
+                    <select id="select-box2" name="Event[venue]" style="width: 200px;" required>
+                        <option value="">-- Please pick one --</option>
+                        <option value="HKBU Campus">HKBU Campus</option>
+                        <option value="LT1">LT1</option>
+                        <option value="LT2">LT2</option>
+                        <option value="LT3">LT3</option>
+                        <option value="AC Hall">AC Hall</option>
+                        <option value="AAB201">AAB201</option>
+                        <option value="WLB103">WLB103</option>
+                        <option value="WLB211">WLB211</option>
+                        <option value="FSC501">FSC501</option>
+                        <option value="RRS401">RRS401</option>
+                        <option value="CVA112">CVA112</option>
+                    </select>
+                </div>
+
+                <!-- Quota -->
+                <div class="form-group">
+                    <label>Quota:</label>
+                    <input type="text" class="form-control" name="Event[quota]" value="<%= event.quota %>">
+                </div>
+
+                <!-- Highlighted Event -->
+                <div class="form-group">
+                    <input id="check-box" type="checkbox" value="highlighted" name="Event[box]"> Highlighted Event
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 80px;">Submit</button>
+                <br>
+            </div>
+        </div>
+    </form>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+
+<script>
+    $('#sandbox-container').datepicker({
+        format: "yyyy/mm/dd",
+        daysOfWeekHighlighted: "0",
+        todayHighlight: true
+    });
+
+    $('#time-picker1').timepicker({
+        template: false,
+        showMeridian: false,
+        minuteStep: 10
+    });
+
+    $('#time-picker2').timepicker({
+        template: false,
+        showMeridian: false,
+        minuteStep: 10
+    });
+
+    function recoverSelectBox() {
+        document.getElementById("select-box1").value = "<%= event.organizer %>";
+        document.getElementById("select-box2").value = "<%= event.venue %>";
+        if ("<%= event.box %>" !== "")
+            document.getElementById("check-box").checked = true;
+    }
+</script>

@@ -20,10 +20,52 @@ module.exports = {
         return res.ok("Successfully created!");
     },
 
+    // action - admin
     admin: async function (req, res) {
 
         var events = await Event.find();
         return res.view('event/admin', { 'events': events });
-    }
+    },
+
+    // action - update
+    update: async function (req, res) {
+
+        var message = Event.getInvalidIdMsg(req.params);
+
+        if (message) return res.badRequest(message);
+
+        if (req.method == "GET") {
+
+            var model = await Event.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('event/update', { 'event': model });
+
+        } else {
+
+            if (typeof req.body.Event === "undefined")
+                return res.badRequest("Form-data not received.");
+
+            var models = await Event.update(req.params.id).set({
+                name: req.body.Event.name,
+                shortInfo: req.body.Event.shortInfo,
+                fullInfo: req.body.Event.fullInfo,
+                imageSrc: req.body.Event.imageSrc,
+                organizer: req.body.Event.organizer,
+                date: req.body.Event.date,
+                startTime: req.body.Event.startTime,
+                endTime: req.body.Event.endTime,
+                venue: req.body.Event.venue,
+                quota: req.body.Event.quota,
+                box: req.body.Event.box
+            }).fetch();
+
+            if (models.length == 0) return res.notFound();
+
+            return res.ok("Record updated");
+
+        }
+    },
 };
 
