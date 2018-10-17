@@ -25,7 +25,9 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'pages/homepage'
+    view: 'pages/homepage',
+    controller: 'event',
+    action: 'home'
   },
 
   /***************************************************************************
@@ -47,6 +49,7 @@ module.exports.routes = {
   'GET /event/update/:id': 'EventController.update',
   'POST /event/update/:id': 'EventController.update',
   'POST /event/delete/:id': 'EventController.delete',
+  'GET /event/view/:id': 'EventController.view',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

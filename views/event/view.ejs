@@ -1,0 +1,63 @@
+<!-- view.ejs -->
+<style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="row">
+    <div class="card col-12 col-lg-12 col-xl-12" style="border-style: hidden;">
+        <h4>
+            <%= event.name %>
+        </h4>
+    </div>
+    <div class="card col-12 col-lg-4 col-xl-4" style="border-style: hidden;">
+        <img class="img-fluid img-thumbnail" src="<%= event.imageSrc %>" />
+    </div>
+    <div class="card col-12 col-lg-8 col-xl-8" style="border-style: hidden;">
+        <table class="table">
+            <tr>
+                <td>
+                    <% if (event.fullInfo !== "") { %>
+                    <%= event.fullInfo %>
+                    <% ;} else { %>
+                    <%= event.shortInfo %>
+                    <% ;} %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="font-weight: bold;">Organizer:</span>
+                    <%= event.organizer %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="font-weight: bold;">Date:</span>
+                    <%= event.date %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="font-weight: bold;">Time:</span>
+                    <%= event.startTime %> -
+                    <%= event.endTime %>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="font-weight: bold;">Venue:</span>
+                    <%= event.venue %>
+                </td>
+            </tr>
+            <% if (event.quota !== "") { %>
+            <tr>
+                <td>
+                    <span style="font-weight: bold;">Quota:</span>
+                    <%= event.quota %>
+                </td>
+            </tr>
+            <% ;} %>
+        </table>
+    </div>
+</div>

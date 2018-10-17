@@ -64,7 +64,6 @@ module.exports = {
             if (models.length == 0) return res.notFound();
 
             return res.ok("Record updated");
-
         }
     },
 
@@ -82,7 +81,37 @@ module.exports = {
         if (models.length == 0) return res.notFound();
 
         return res.ok("Record Deleted.");
+    },
 
+    // action - home
+    home: async function (req, res) {
+
+        const qPage = Math.max(req.query.page - 1, 0) || 0;
+
+        const numOfItemsPerPage = 4;
+
+        var events = await Event.find({
+            limit: numOfItemsPerPage,
+            skip: numOfItemsPerPage * qPage
+        });
+
+        var numOfPage = Math.ceil(await Event.count() / numOfItemsPerPage);
+
+        return res.view('pages/homepage', { 'events': events, 'count': numOfPage });
+    },
+
+    // action - view
+    view: async function (req, res) {
+
+        var message = Event.getInvalidIdMsg(req.params);
+
+        if (message) return res.badRequest(message);
+
+        var model = await Event.findOne(req.params.id);
+
+        if (!model) return res.notFound();
+
+        return res.view('event/view', { 'event': model });
     },
 };
 
