@@ -36,7 +36,7 @@
                 <!-- Organizer -->
                 <div class="form-group">
                     <label>Organizer:</label><br>
-                    <select id="select-box1" name="Event[organizer]" style="width: 200px;" required>
+                    <select id="select-box1" class="form-control" name="Event[organizer]" required>
                         <option value="">-- Please pick one --</option>
                         <option value="Student Union">Student Union</option>
                         <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
@@ -71,7 +71,7 @@
                 <!-- Venue -->
                 <div class="form-group">
                     <label>Venue:</label><br>
-                    <select id="select-box2" name="Event[venue]" style="width: 200px;" required>
+                    <select id="select-box2" class="form-control" name="Event[venue]" required>
                         <option value="">-- Please pick one --</option>
                         <option value="HKBU Campus">HKBU Campus</option>
                         <option value="LT1">LT1</option>
@@ -95,7 +95,11 @@
 
                 <!-- Highlighted Event -->
                 <div class="form-group">
-                    <input id="check-box" type="checkbox" value="highlighted" name="Event[box]"> Highlighted Event
+                    <% if (event.box === "highlighted") { %>
+                    <input type="checkbox" value="unhighlighted" name="Event[box]"> Unhighlight this event
+                    <% ;} else { %>
+                    <input type="checkbox" value="highlighted" name="Event[box]"> Highlighted Event
+                    <% ;} %>
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 80px;">Submit</button>
@@ -115,7 +119,7 @@
 
 <script>
     $('#sandbox-container').datepicker({
-        format: "yyyy/mm/dd",
+        format: "yyyy-mm-dd",
         daysOfWeekHighlighted: "0",
         todayHighlight: true
     });
@@ -135,7 +139,5 @@
     function recoverSelectBox() {
         document.getElementById("select-box1").value = "<%= event.organizer %>";
         document.getElementById("select-box2").value = "<%= event.venue %>";
-        if ("<%= event.box %>" !== "")
-            document.getElementById("check-box").checked = true;
     }
 </script>
