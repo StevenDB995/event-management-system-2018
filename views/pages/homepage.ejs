@@ -12,7 +12,6 @@
 <body>
   <div class="row">
     <% events.forEach(function(model) { %>
-    <% if (model.box === "highlighted") { %>
     <div class="card col-12 col-lg-6 col-xl-6" style="padding: 20px;">
       <div class="row">
         <div class="card col-12 col-lg-12 col-xl-12" style="border-style: hidden;">
@@ -32,7 +31,6 @@
         </div>
       </div>
     </div>
-    <% ;} %>
     <% }); %>
   </div>
   <br><br>

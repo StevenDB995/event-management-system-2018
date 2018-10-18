@@ -35,7 +35,7 @@
             <!-- Organizer -->
             <div class="form-group">
                 <label>Organizer:</label><br>
-                <select name="Event[organizer]" style="width: 200px;" required>
+                <select class="form-control" name="Event[organizer]" required>
                     <option value="" selected>-- Please pick one --</option>
                     <option value="Student Union">Student Union</option>
                     <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
@@ -69,7 +69,7 @@
             <!-- Venue -->
             <div class="form-group">
                 <label>Venue:</label><br>
-                <select name="Event[venue]" style="width: 200px;" required>
+                <select class="form-control" name="Event[venue]" required>
                     <option value="" selected>-- Please pick one --</option>
                     <option value="HKBU Campus">HKBU Campus</option>
                     <option value="LT1">LT1</option>
@@ -105,7 +105,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     $('#sandbox-container').datepicker({
-        format: "yyyy/mm/dd",
+        format: "yyyy-mm-dd",
         daysOfWeekHighlighted: "0",
         todayHighlight: true
     });

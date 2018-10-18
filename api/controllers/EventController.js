@@ -90,12 +90,17 @@ module.exports = {
 
         const numOfItemsPerPage = 4;
 
+        var highlightedEvents = await Event.find({
+            where: { box: 'highlighted' }
+        });
+
+        var numOfPage = Math.ceil(highlightedEvents.length / numOfItemsPerPage);
+
         var events = await Event.find({
+            where: { box: 'highlighted' },
             limit: numOfItemsPerPage,
             skip: numOfItemsPerPage * qPage
         });
-
-        var numOfPage = Math.ceil(await Event.count() / numOfItemsPerPage);
 
         return res.view('pages/homepage', { 'events': events, 'count': numOfPage });
     },
@@ -113,5 +118,35 @@ module.exports = {
 
         return res.view('event/view', { 'event': model });
     },
+
+    // action - search
+    search: async function (req, res) {
+
+        const qName = req.query.name || "";
+        const qOrganizer = req.query.organizer || "";
+        const qStartDate = req.query.startDate || "1970-1-1";
+        const qEndDate = req.query.endDate || "2099-12-31";
+        const qVenue = req.query.venue || "";
+
+        const qPage = Math.max(req.query.page - 1, 0) || 0;
+        const numOfItemsPerPage = 2;
+
+        var results = await Event.find({
+            where: { name: { 'contains': qName }, organizer: { 'contains': qOrganizer }, date: { '>=': qStartDate, '<=': qEndDate }, venue: { 'contains': qVenue } },
+            sort: 'name'
+        });
+
+        var numOfPage = Math.ceil(results.length / numOfItemsPerPage);
+
+        var events = await Event.find({
+            where: { name: { 'contains': qName }, organizer: { 'contains': qOrganizer }, date: { '>=': qStartDate, '<=': qEndDate }, venue: { 'contains': qVenue } },
+            sort: 'name',
+
+            limit: numOfItemsPerPage,
+            skip: numOfItemsPerPage * qPage
+        });
+
+        return res.view('event/search', { 'events': events, 'count': numOfPage, 'qName': qName, 'qOrganizer': qOrganizer, 'qStartDate': qStartDate, 'qEndDate': qEndDate, 'qVenue': qVenue });
+    }
 };
 

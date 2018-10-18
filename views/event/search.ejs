@@ -1,0 +1,114 @@
+<!-- search.ejs -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+
+<div class="row">
+    <div class="card col-12 col-lg-8 col-xl-8" style="border-style: hidden;">
+        <div class="row">
+            <div class="card col-12 col-lg-12 col-xl-12" style="border-style: hidden;">
+                <% const current = parseInt(req.query.page) || 1; %>
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="http://localhost:1337/event/search?name=<%= qName %>&organizer=<%= qOrganizer %>&startDate=<%= qStartDate %>&endDate=<%= qEndDate %>&venue=<%= qVenue %>&page=<%= Math.max(current-1, 1) %>">Previous</a>
+                        </li>
+
+                        <% for (i = 1; i <= count; i++) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="http://localhost:1337/event/search?name=<%= qName %>&organizer=<%= qOrganizer %>&startDate=<%= qStartDate %>&endDate=<%= qEndDate %>&venue=<%= qVenue %>&page=<%= i %>">
+                                <%= i %></a>
+                        </li>
+                        <% } %>
+
+                        <li class="page-item">
+                            <a class="page-link" href="http://localhost:1337/event/search?name=<%= qName %>&organizer=<%= qOrganizer %>&startDate=<%= qStartDate %>&endDate=<%= qEndDate %>&venue=<%= qVenue %>&page=<%= Math.min(current+1, count) %>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <% events.forEach(function(model) { %>
+            <div class="card col-12 col-lg-6 col-xl-6">
+                <img class="img-fluid img-thumbnail" src="<%= model.imageSrc %>" /><br>
+                <h5>
+                    <a href="http://localhost:1337/event/view/<%= model.id %>">
+                        <%= model.name %>
+                    </a>
+                </h5>
+                <p>
+                    <%= model.shortInfo %>
+                </p>
+            </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <div class="card col-12 col-lg-4 col-xl-4" style="border-style: hidden;">
+        <form action="/event/search" method="GET">
+            <div class="form-group">
+                <label>Event Name:</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+
+            <div class="form-group">
+                <label>Organizer:</label><br>
+                <select class="form-control" name="organizer">
+                    <option value="" selected>Select organizer here</option>
+                    <option value="Student Union">Student Union</option>
+                    <option value="AMHKY">Association of Hong Kong and Mainland Youth</option>
+                    <option value="Student Affairs">Student Affairs</option>
+                    <option value="Social Service Association">Social Service Association</option>
+                    <option value="UASE">The United Association of Sports and Entertainment</option>
+                    <option value="Language Centre">Language Centre</option>
+                    <option value="Academy of Visual Arts">Academy of Visual Arts</option>
+                    <option value="Department of Computer Science">Department of Computer Science</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Start Date:</label>
+                <input id="sandbox-container1" type="text" class="form-control" name="startDate">
+            </div>
+
+            <div class="form-group">
+                <label>End Date:</label>
+                <input id="sandbox-container2" type="text" class="form-control" name="endDate">
+            </div>
+
+            <div class="form-group">
+                <label>Venue:</label><br>
+                <select class="form-control" name="venue">
+                    <option value="" selected>Select venue here</option>
+                    <option value="HKBU Campus">HKBU Campus</option>
+                    <option value="LT1">LT1</option>
+                    <option value="LT2">LT2</option>
+                    <option value="LT3">LT3</option>
+                    <option value="AC Hall">AC Hall</option>
+                    <option value="AAB201">AAB201</option>
+                    <option value="WLB103">WLB103</option>
+                    <option value="WLB211">WLB211</option>
+                    <option value="FSC501">FSC501</option>
+                    <option value="RRS401">RRS401</option>
+                    <option value="CVA112">CVA112</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 80px;">Search</button>
+            <br><br>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $('#sandbox-container1').datepicker({
+        format: "yyyy-mm-dd",
+        daysOfWeekHighlighted: "0",
+        todayHighlight: true
+    });
+
+    $('#sandbox-container2').datepicker({
+        format: "yyyy-mm-dd",
+        daysOfWeekHighlighted: "0",
+        todayHighlight: true
+    });
+</script>
