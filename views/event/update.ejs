@@ -52,7 +52,7 @@
                 <!-- Event Date -->
                 <div class="form-group">
                     <label>Event Date:</label>
-                    <input id="sandbox-container" type="text" class="form-control" name="Event[date]" value="<%= event.date %>"
+                    <input id="sandbox-container" type="text" class="form-control" name="Event[date]" value="<%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %>"
                         required>
                 </div>
 
@@ -119,7 +119,7 @@
 
 <script>
     $('#sandbox-container').datepicker({
-        format: "yyyy-mm-dd",
+        format: "dd/mm/yyyy",
         daysOfWeekHighlighted: "0",
         todayHighlight: true
     });

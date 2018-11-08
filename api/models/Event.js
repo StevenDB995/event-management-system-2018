@@ -18,7 +18,7 @@ module.exports = {
     fullInfo: { type: "string" },
     imageSrc: { type: "string" },
     organizer: { type: "string" },
-    date: { type: "string", columnType: "date" },
+    date: { type: "ref", columnType: "datetime" },
     startTime: { type: "string" },
     endTime: { type: "string" },
     venue: { type: "string" },

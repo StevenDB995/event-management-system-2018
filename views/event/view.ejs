@@ -34,14 +34,13 @@
             <tr>
                 <td>
                     <span style="font-weight: bold;">Date:</span>
-                    <%= event.date %>
+                    <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span style="font-weight: bold;">Time:</span>
-                    <%= event.startTime %> -
-                    <%= event.endTime %>
+                    <%= event.startTime %> - <%= event.endTime %>
                 </td>
             </tr>
             <tr>
