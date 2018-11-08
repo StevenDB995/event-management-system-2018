@@ -5,17 +5,62 @@
     }
 </style>
 
-<table class="table">
-    <% events.forEach(function(model) { %>
-    <tr>
-        <td>
-            <%= model.id %>
-        </td>
-        <td>
-            <a href="http://localhost:1337/event/admin/update/<%= model.id %>">
-                <%= model.name %>
-            </a>
-        </td>
-    </tr>
-    <% }); %>
-</table>
+<div style="overflow-x: auto;">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Event</th>
+            <th>Organizer</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <% events.forEach(function(model) { %>
+        <tr>
+            <td>
+                <%= model.id %>
+            </td>
+            <td>
+                <a href="http://localhost:1337/event/view/<%= model.id %>">
+                    <%= model.name %>
+                </a>
+            </td>
+            <td>
+                <a>
+                    <%= model.organizer %>
+                </a>
+            </td>
+            <td>
+                <a href="http://localhost:1337/event/admin/update/<%= model.id %>">
+                    <button class="btn btn-warning">Update</button>
+                </a>
+            </td>
+            <td>
+                <button class="btn btn-danger" onclick="deleteEvent('<%= model.id %>')">Delete</button>
+            </td>
+            <td>
+                <button class="btn btn-info">Registration</button>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+</div>
+
+
+<script>
+    async function deleteEvent(id) {
+
+        var result = confirm("Confirm Delete?");
+
+        if (result == true) {
+
+            var response = await fetch("/event/" + id, {
+                method: "DELETE",
+                credentials: 'same-origin',
+            });
+
+            console.log(response);
+            location.reload(true);
+        }
+    };
+</script>
