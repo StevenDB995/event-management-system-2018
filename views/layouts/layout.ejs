@@ -142,8 +142,8 @@
     crossorigin="anonymous"></script>
 
   <script>
-      for (var i = 0; i < document.links.length; i++) {
-        if (document.links[i].href == document.URL)
+      for (var i = 1; i <= 3; i++) {
+        if (document.URL.includes(document.links[i].href))
           document.links[i].className += " active";
       }
   </script>

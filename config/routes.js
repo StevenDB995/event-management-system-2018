@@ -30,6 +30,12 @@ module.exports.routes = {
     action: 'home'
   },
 
+  '/event/admin/update': {
+    view: 'event/update',
+    controller: 'event',
+    action: 'update'
+  },
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
@@ -46,8 +52,8 @@ module.exports.routes = {
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
 
-  'GET /event/update/:id': 'EventController.update',
-  'POST /event/update/:id': 'EventController.update',
+  'GET /event/admin/update/:id': 'EventController.update',
+  'POST /event/admin/update/:id': 'EventController.update',
   'POST /event/delete/:id': 'EventController.delete',
   'GET /event/view/:id': 'EventController.view',
 
