@@ -41,20 +41,63 @@
 
 <body>
   <div class="container">
+    <% if (req.session.role == "admin") { %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="http://localhost:1337">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+          <a class="navbar-brand" href="http://localhost:1337">Home</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/create">Create</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/admin">Admin</a>
         </div>
       </div>
+      <div>
+        <a>Hi,
+          <%= req.session.username %>. (</a>
+        <a href="http://localhost:1337/user/logout">Log out</a>
+        <a>)</a>
+      </div>
     </nav>
+    <% ;} else if (req.session.role == "student") { %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="navbar-brand" href="http://localhost:1337">Home</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
+          <a class="nav-item nav-link" href="#">My Registered Events</a>
+        </div>
+      </div>
+      <div>
+        <a>Hi,
+          <%= req.session.username %>. (</a>
+        <a href="http://localhost:1337/user/logout">Log out</a>
+        <a>)</a>
+      </div>
+    </nav>
+    <% ;} else { %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="navbar-brand" href="http://localhost:1337">Home</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
+        </div>
+      </div>
+      <a href="http://localhost:1337/user/login" style="color: black;">Log in</a>
+    </nav>
+    <% ;} %>
+
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Event Management System</h1>
@@ -142,10 +185,10 @@
     crossorigin="anonymous"></script>
 
   <script>
-      for (var i = 1; i <= 3; i++) {
-        if (document.URL.includes(document.links[i].href))
-          document.links[i].className += " active";
-      }
+    for (var i = 1; i <= 3; i++) {
+      if (document.URL.includes(document.links[i].href))
+        document.links[i].className += " active";
+    }
   </script>
 </body>
 

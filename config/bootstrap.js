@@ -17,6 +17,9 @@ module.exports.bootstrap = async function (done) {
   // ```
   // // Set up fake development data (or if we already have some, avast)
 
+  sails.bcrypt = require('bcrypt');
+  const saltRounds = 10;
+
   if (await Event.count() > 0) {
     return done();
   }
@@ -104,6 +107,13 @@ module.exports.bootstrap = async function (done) {
       id: 6
     }
   ]);
+
+  await User.createEach([
+    { "username": "StevenDB", "password": await sails.bcrypt.hash('123456', saltRounds), role: "admin" },
+    { "username": "16251296", "password": await sails.bcrypt.hash('222222', saltRounds), role: "student" },
+    { "username": "16251210", "password": await sails.bcrypt.hash('444444', saltRounds), role: "student" }
+  ]);
+
   // ```
 
   // Don't forget to trigger `done()` when this bootstrap function's logic is finished.

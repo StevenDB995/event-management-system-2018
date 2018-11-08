@@ -1,0 +1,45 @@
+<!-- login.ejs -->
+<div class="row">
+    <div class="card col-0 col-lg-4 col-xl-4" style="border-style: hidden;"></div>
+
+    <div class="card col-12 col-lg-4 col-xl-4" style="border-style: hidden;">
+        <form action="/user/login" method="POST" onsubmit="submitForm(this); return false">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" name="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Sign in</button>
+        </form>
+    </div>
+
+    <div class="card col-0 col-lg-4 col-xl-4" style="border-style: hidden;"></div>
+</div>
+
+<script>
+    async function submitForm(oFormElement) {
+
+        var response = await fetch(oFormElement.action, {
+            method: oFormElement.method,
+            credentials: 'same-origin',
+            body: new FormData(oFormElement),
+        });
+
+        console.log(response);
+
+        if (response.redirected) {
+            window.location = response.url;
+        } else if (response.status == 200) {
+            var data = await response.json();
+            alert(data);
+            location.reload(true);
+        } else if (response.status == 401) {
+            var data = await response.text();
+            alert(data);
+        } else {
+            alert(response.statusText);
+        }
+
+    };
+</script>
