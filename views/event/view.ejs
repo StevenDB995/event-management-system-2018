@@ -34,13 +34,16 @@
             <tr>
                 <td>
                     <span style="font-weight: bold;">Date:</span>
-                    <%= event.date.getDate() %>/<%= event.date.getMonth()+1 %>/<%= event.date.getFullYear() %>
+                    <%= event.date.getDate() %>/
+                    <%= event.date.getMonth()+1 %>/
+                    <%= event.date.getFullYear() %>
                 </td>
             </tr>
             <tr>
                 <td>
                     <span style="font-weight: bold;">Time:</span>
-                    <%= event.startTime %> - <%= event.endTime %>
+                    <%= event.startTime %> -
+                    <%= event.endTime %>
                 </td>
             </tr>
             <tr>
@@ -49,7 +52,7 @@
                     <%= event.venue %>
                 </td>
             </tr>
-            <% if (event.quota !== "") { %>
+            <% if (event.quota < Number.MAX_SAFE_INTEGER) { %>
             <tr>
                 <td>
                     <span style="font-weight: bold;">Quota:</span>
@@ -58,5 +61,51 @@
             </tr>
             <% ;} %>
         </table>
+
+        <% if (session.role == "student") { %>
+        <% if (!registered) { %>
+        <% if (event.quota == 0) { %>
+        <button class="btn btn-primary" style="width: 120px; align-self: flex-end;" disabled>Register</button>
+        <% ;} else { %>
+        <button class="btn btn-primary" onclick="registerEvent('<%= event.id %>');" style="width: 120px; align-self: flex-end;">Register</button>
+        <% ;} %>
+        <% ;} else { %>
+        <button class="btn btn-danger" onclick="unregisterEvent('<%= event.id %>');" style="width: 120px; align-self: flex-end;">Unregister</button>
+        <% ;} %>
+        <% ;} %>
     </div>
 </div>
+
+<script>
+    async function registerEvent(id) {
+
+        var result = confirm("Confirm Register?");
+
+        if (result == true) {
+
+            var response = await fetch("/user/<%= req.session.uid %>/registers/add/event/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            console.log(response);
+            location.reload(true);
+        }
+    };
+
+    async function unregisterEvent(id) {
+
+        var result = confirm("Confirm Unregister?");
+
+        if (result == true) {
+
+            var response = await fetch("/user/<%= req.session.uid %>/registers/remove/event/" + id, {
+                method: "POST",
+                credentials: 'same-origin',
+            });
+
+            console.log(response);
+            location.reload(true);
+        }
+    };
+</script>

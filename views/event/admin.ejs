@@ -39,7 +39,9 @@
                 <button class="btn btn-danger" onclick="deleteEvent('<%= model.id %>')">Delete</button>
             </td>
             <td>
-                <button class="btn btn-info">Registration</button>
+                <a href="http://localhost:1337/event/admin/registration/<%= model.id %>">
+                    <button class="btn btn-info">Registration</button>
+                </a>
             </td>
         </tr>
         <% }); %>

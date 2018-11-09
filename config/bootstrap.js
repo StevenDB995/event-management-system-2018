@@ -17,6 +17,20 @@ module.exports.bootstrap = async function (done) {
   // ```
   // // Set up fake development data (or if we already have some, avast)
 
+  sails.getInvalidIdMsg = function (opts) {
+
+    if (opts.id && isNaN(parseInt(opts.id))) {
+      return "Primary key specfied is invalid (incorrect type).";
+    }
+
+    if (opts.fk && isNaN(parseInt(opts.fk))) {
+      return "Foreign key specfied is invalid (incorrect type).";
+    }
+
+    return null;        // falsy
+
+  }
+
   sails.bcrypt = require('bcrypt');
   const saltRounds = 10;
 
@@ -47,7 +61,7 @@ module.exports.bootstrap = async function (done) {
       date: new Date('2018/11/03'),
       startTime: '19:00', endTime: '21:30',
       venue: 'AC Hall',
-      quota: '500',
+      quota: 500,
       box: 'highlighted',
       id: 2
     },
@@ -61,7 +75,7 @@ module.exports.bootstrap = async function (done) {
       date: new Date('2018/11/15'),
       startTime: '18:30', endTime: '21:30',
       venue: 'RRS401',
-      quota: '90',
+      quota: 90,
       box: 'highlighted',
       id: 3
     },
@@ -74,7 +88,7 @@ module.exports.bootstrap = async function (done) {
       organizer: "Academy of Visual Arts",
       startTime: '13:30', endTime: '17:30',
       venue: 'CVA112',
-      quota: '40',
+      quota: 0,
       box: 'highlighted',
       id: 4
     },
@@ -88,7 +102,7 @@ module.exports.bootstrap = async function (done) {
       organizer: "UASE",
       startTime: '14:30', endTime: '16:00',
       venue: 'RRS401',
-      quota: '32',
+      quota: 32,
       box: '',
       id: 5
     },
@@ -96,22 +110,22 @@ module.exports.bootstrap = async function (done) {
     {
       name: 'asdfg1234',
       shortInfo: 'qwerty uiop asdfghjk',
-      fullInfo:'kkkij lmnhhg @#$%^&*><?+=...',
+      fullInfo: 'kkkij lmnhhg @#$%^&*><?+=...',
       imageSrc: 'http://via.placeholder.com/430x597/dec.png',
       organizer: "Student Affairs",
       date: new Date('2018/11/23'),
       startTime: '15:00', endTime: '18:00',
       venue: 'AAB201',
-      quota: '180',
+      quota: 180,
       box: 'highlighted',
       id: 6
     }
   ]);
 
   await User.createEach([
-    { "username": "StevenDB", "password": await sails.bcrypt.hash('123456', saltRounds), role: "admin" },
-    { "username": "16251296", "password": await sails.bcrypt.hash('222222', saltRounds), role: "student" },
-    { "username": "16251210", "password": await sails.bcrypt.hash('444444', saltRounds), role: "student" }
+    { "username": "StevenDB", "password": await sails.bcrypt.hash('123456', saltRounds), role: "admin", id: 1 },
+    { "username": "16251296", "password": await sails.bcrypt.hash('222222', saltRounds), role: "student", id: 2 },
+    { "username": "16251210", "password": await sails.bcrypt.hash('444444', saltRounds), role: "student", id: 3 }
   ]);
 
   // ```

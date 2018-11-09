@@ -1,0 +1,57 @@
+<!-- registeredEvent.ejs -->
+<div class="row">
+    <div class="card col-12 col-lg-12 col-xl-12" style="border-style: hidden;">
+        <h4>Registered Events</h4>
+    </div>
+
+    <% events.forEach(function(model) { %>
+    <div class="card col12 col-lg-4 col-xl-4">
+        <img class="img-fluid img-thumbnail" src="<%= model.imageSrc %>" /><br>
+        <h5>
+            <a href="http://localhost:1337/event/view/<%= model.id %>">
+                <%= model.name %>
+            </a>
+        </h5>
+        <ul class='list-group'>
+            <li class='list-group-item'>
+                <span style="font-weight: bold;">Date:</span>
+                <%= model.date.getDate() %>/
+                <%= model.date.getMonth()+1 %>/
+                <%= model.date.getFullYear() %>
+            </li>
+            <li class='list-group-item'>
+                <span style="font-weight: bold;">Time:</span>
+                <%= model.startTime %> -
+                <%= model.endTime %>
+            </li>
+            <li class='list-group-item'>
+                <span style="font-weight: bold;">Venue:</span>
+                <%= model.venue %>
+            </li>
+        </ul>
+        <br><br>
+    </div>
+    <% }); %>
+</div>
+<br><br>
+
+<% const current = parseInt(req.query.page) || 1; %>
+
+<nav style="float: right;">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="http://localhost:1337/user/<%= session.uid %>/registeredEvent?page=<%= Math.max(current-1, 1) %>">Previous</a>
+        </li>
+
+        <% for (i = 1; i <= count; i++) { %>
+        <li class="page-item">
+            <a class="page-link" href="http://localhost:1337/user/<%= session.uid %>/registeredEvent?page=<%= i %>">
+                <%= i %></a>
+        </li>
+        <% } %>
+
+        <li class="page-item">
+            <a class="page-link" href="http://localhost:1337/user/<%= session.uid %>/registeredEvent?page=<%= Math.min(current+1, count) %>">Next</a>
+        </li>
+    </ul>
+</nav>

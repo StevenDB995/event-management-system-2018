@@ -24,7 +24,12 @@ module.exports.policies = {
     create: 'isAdmin',
     admin: 'isAdmin',
     update: 'isAdmin',
-    delete: 'isAdmin'
+    showRegistration: 'isAdmin'
+  },
+
+  UserController: {
+
+    registeredEvent: 'isStudent'
   }
 
 };

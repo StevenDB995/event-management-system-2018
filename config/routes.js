@@ -36,6 +36,12 @@ module.exports.routes = {
     action: 'update'
   },
 
+  '/event/showRegistration': { view: '404' },
+
+  '/user/add': { view: '404' },
+  '/user/remove': { view: '404' },
+  '/user/registeredEvent': { view: '404' },
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
@@ -56,6 +62,11 @@ module.exports.routes = {
   'POST /event/admin/update/:id': 'EventController.update',
   'DELETE /event/:id': 'EventController.delete',
   'GET /event/view/:id': 'EventController.view',
+  'GET /event/admin/registration/:id': 'EventController.showRegistration',
+
+  'POST /user/:id/:association/add/event/:fk': 'UserController.add',
+  'POST /user/:id/:association/remove/event/:fk': 'UserController.remove',
+  'GET /user/:id/registeredEvent': 'UserController.registeredEvent'
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

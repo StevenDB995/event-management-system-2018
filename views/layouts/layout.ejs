@@ -41,14 +41,14 @@
 
 <body>
   <div class="container">
-    <% if (req.session.role == "admin") { %>
+    <% if (session.role == "admin") { %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav" id="navbarDiv">
           <a class="navbar-brand" href="http://localhost:1337">Home</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/create">Create</a>
@@ -57,27 +57,27 @@
       </div>
       <div>
         <a>Hi,
-          <%= req.session.username %>. (</a>
+          <%= session.username %>. (</a>
         <a href="http://localhost:1337/user/logout">Log out</a>
         <a>)</a>
       </div>
     </nav>
-    <% ;} else if (req.session.role == "student") { %>
+    <% ;} else if (session.role == "student") { %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav" id="navbarDiv">
           <a class="navbar-brand" href="http://localhost:1337">Home</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
-          <a class="nav-item nav-link" href="#">My Registered Events</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/user/<%= session.uid %>/registeredEvent">My Registered Events</a>
         </div>
       </div>
       <div>
         <a>Hi,
-          <%= req.session.username %>. (</a>
+          <%= session.username %>. (</a>
         <a href="http://localhost:1337/user/logout">Log out</a>
         <a>)</a>
       </div>
@@ -89,7 +89,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div class="navbar-nav" id="navbarDiv">
           <a class="navbar-brand" href="http://localhost:1337">Home</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
         </div>
@@ -185,9 +185,12 @@
     crossorigin="anonymous"></script>
 
   <script>
-    for (var i = 1; i <= 3; i++) {
-      if (document.URL.includes(document.links[i].href))
-        document.links[i].className += " active";
+    var header = document.getElementById("navbarDiv");
+    var links = header.getElementsByClassName("nav-link");
+
+    for (var i = 0; i < links.length; i++) {
+      if (document.URL.includes(links[i].href))
+        links[i].className += " active";
     }
   </script>
 </body>
