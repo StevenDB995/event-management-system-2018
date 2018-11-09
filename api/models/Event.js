@@ -22,8 +22,8 @@ module.exports = {
     startTime: { type: "string" },
     endTime: { type: "string" },
     venue: { type: "string" },
-    quota: { type: "string" },
-    box: { type: "string" }
+    quota: { type: "number", defaultsTo: Number.MAX_SAFE_INTEGER },
+    box: { type: "string" },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -33,6 +33,11 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+
+    admits: {
+      collection: "User",
+      via: "registers"
+    }
 
   },
 

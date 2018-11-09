@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
 
-<form action="/event/create" method="POST">
+<form action="/event/create" method="POST" onsubmit="setDefaultValue()">
 
     <div class="row">
         <div class="card col-12 col-lg-6 col-xl-6" style="border-style: hidden;">
@@ -88,7 +88,7 @@
             <!-- Quota -->
             <div class="form-group">
                 <label>Quota:</label>
-                <input type="text" class="form-control" name="Event[quota]">
+                <input type="number" class="form-control" name="Event[quota]" id="quota">
             </div>
 
             <!-- Highlighted Event -->
@@ -101,6 +101,13 @@
         </div>
     </div>
 </form>
+
+<script>
+    function setDefaultValue() {
+        var elem = document.getElementById("quota");
+        if (elem.value == "") elem.value = Number.MAX_SAFE_INTEGER;
+    }
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
 <script>
