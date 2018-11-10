@@ -1,60 +1,46 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-</head>
-
-<body>
-  <div class="row">
-    <% events.forEach(function(model) { %>
-    <div class="card col-12 col-lg-6 col-xl-6" style="padding: 20px;">
-      <div class="row">
-        <div class="card col-12 col-lg-12 col-xl-12" style="border-style: hidden;">
-          <h5>
-            <a href="http://localhost:1337/event/view/<%= model.id %>">
-              <%= model.name %>
-            </a>
-          </h5>
-        </div>
-        <div class="card col-12 col-lg-4 col-xl-4" style="border-style: hidden;">
-          <img class="img-fluid img-thumbnail" src="<%= model.imageSrc %>" />
-        </div>
-        <div class="card col-12 col-lg-8 col-xl-8" style="border-style: hidden;">
-          <p>
-            <%= model.shortInfo %>
-          </p>
-        </div>
+<!-- homepage.ejs -->
+<div class="row">
+  <% events.forEach(function(model) { %>
+  <div class="card col-12 col-lg-6 col-xl-6" style="padding: 20px;">
+    <div class="row">
+      <div class="card col-12 col-lg-12 col-xl-12" style="border-style: hidden;">
+        <h5>
+          <a href="http://localhost:1337/event/view/<%= model.id %>">
+            <%= model.name %>
+          </a>
+        </h5>
+      </div>
+      <div class="card col-12 col-lg-4 col-xl-4" style="border-style: hidden;">
+        <img class="img-fluid img-thumbnail" src="<%= model.imageSrc %>" />
+      </div>
+      <div class="card col-12 col-lg-8 col-xl-8" style="border-style: hidden;">
+        <p>
+          <%= model.shortInfo %>
+        </p>
       </div>
     </div>
-    <% }); %>
   </div>
-  <br><br>
+  <% }); %>
+</div>
+<br><br>
 
-  <% const current = parseInt(req.query.page) || 1; %>
+<% const current = parseInt(req.query.page) || 1; %>
 
-  <nav style="float: right;">
-    <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" href="http://localhost:1337/?page=<%= Math.max(current-1, 1) %>">Previous</a>
-      </li>
+<nav style="float: right;">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="http://localhost:1337/?page=<%= Math.max(current-1, 1) %>">Previous</a>
+    </li>
 
-      <% for (i = 1; i <= count; i++) { %>
-      <li class="page-item">
-        <a class="page-link" href="http://localhost:1337/?page=<%= i %>">
-          <%= i %></a>
-      </li>
-      <% } %>
+    <% for (i = 1; i <= count; i++) { %>
+    <li class="page-item">
+      <a class="page-link" href="http://localhost:1337/?page=<%= i %>">
+        <%= i %></a>
+    </li>
+    <% } %>
 
-      <li class="page-item">
-        <a class="page-link" href="http://localhost:1337/?page=<%= Math.min(current+1, count) %>">Next</a>
-      </li>
-    </ul>
-  </nav>
-</body>
-
-</html>
+    <li class="page-item">
+      <a class="page-link" href="http://localhost:1337/?page=<%= Math.min(current+1, count) %>">Next</a>
+    </li>
+  </ul>
+</nav>

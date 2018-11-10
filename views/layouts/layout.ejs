@@ -72,7 +72,8 @@
         <div class="navbar-nav" id="navbarDiv">
           <a class="navbar-brand" href="http://localhost:1337">Home</a>
           <a class="nav-item nav-link" href="http://localhost:1337/event/search">Search</a>
-          <a class="nav-item nav-link" href="http://localhost:1337/user/<%= session.uid %>/registeredEvent">My Registered Events</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/user/<%= session.uid %>/registeredEvent">My
+            Registered Events</a>
         </div>
       </div>
       <div>
@@ -184,6 +185,9 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
+
   <script>
     var header = document.getElementById("navbarDiv");
     var links = header.getElementsByClassName("nav-link");
@@ -192,6 +196,24 @@
       if (document.URL.includes(links[i].href))
         links[i].className += " active";
     }
+
+    $('#sandbox-container').datepicker({
+      format: "dd/mm/yyyy",
+      daysOfWeekHighlighted: "0",
+      todayHighlight: true
+    });
+
+    $('#time-picker1').timepicker({
+      template: false,
+      showMeridian: false,
+      minuteStep: 10
+    });
+
+    $('#time-picker2').timepicker({
+      template: false,
+      showMeridian: false,
+      minuteStep: 10
+    });
   </script>
 </body>
 

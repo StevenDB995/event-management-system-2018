@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css" />
 
 <body onload="recoverSelectBox()">
-    <form action="/event/admin/update/<%= event.id %>" method="POST">
+    <form action="/event/admin/update/<%= event.id %>" method="POST" onsubmit="setDefaultValue()">
 
         <div class="row">
             <div class="card col-12 col-lg-6 col-xl-6" style="border-style: hidden;">
@@ -90,7 +90,11 @@
                 <!-- Quota -->
                 <div class="form-group">
                     <label>Quota:</label>
-                    <input type="number" class="form-control" name="Event[quota]" value="<%= event.quota %>">
+                    <% if (event.quota < Number.MAX_SAFE_INTEGER) { %>
+                    <input type="number" class="form-control" name="Event[quota]" value="<%= event.quota %>" id="quota">
+                    <% ;} else { %>
+                    <input type="number" class="form-control" name="Event[quota]" id="quota">
+                    <% ;} %>
                 </div>
 
                 <!-- Highlighted Event -->
@@ -109,30 +113,14 @@
     </form>
 </body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/js/bootstrap-timepicker.min.js"></script>
-
 <script>
-    $('#sandbox-container').datepicker({
-        format: "dd/mm/yyyy",
-        daysOfWeekHighlighted: "0",
-        todayHighlight: true
-    });
-
-    $('#time-picker1').timepicker({
-        template: false,
-        showMeridian: false,
-        minuteStep: 10
-    });
-
-    $('#time-picker2').timepicker({
-        template: false,
-        showMeridian: false,
-        minuteStep: 10
-    });
-
     function recoverSelectBox() {
         document.getElementById("select-box1").value = "<%= event.organizer %>";
         document.getElementById("select-box2").value = "<%= event.venue %>";
+    }
+
+    function setDefaultValue() {
+        var elem = document.getElementById("quota");
+        if (elem.value == "") elem.value = Number.MAX_SAFE_INTEGER;
     }
 </script>
